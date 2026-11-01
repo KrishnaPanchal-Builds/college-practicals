@@ -1,0 +1,730 @@
+A college wants to store student information. Create a Student class where one student object can be created with default values, another with user-provided values, and a third by copying an existing student record.
+
+class Student {
+    private int id;
+    private String name;
+    private String course;
+    private double gpa;
+
+    // Default Constructor
+    public Student() {
+        this.id = 0;
+        this.name = "Unknown";
+        this.course = "General";
+        this.gpa = 0.0;
+    }
+
+    // Parameterized Constructor
+    public Student(int id, String name, String course, double gpa) {
+        this.id = id;
+        this.name = name;
+        this.course = course;
+        this.gpa = gpa;
+    }
+
+    // Copy Constructor
+    public Student(Student other) {
+        this.id = other.id;
+        this.name = other.name;
+        this.course = other.course;
+        this.gpa = other.gpa;
+    }
+
+    // Display student information
+    public void display() {
+        System.out.println("Student ID: " + id);
+        System.out.println("Name      : " + name);
+        System.out.println("Course    : " + course);
+        System.out.println("GPA       : " + gpa);
+        System.out.println("----------------------------------------");
+    }
+}
+
+class StudentConstructorDemo {
+    public static void main(String[] args) {
+        System.out.println("--- Student Information Management ---\n");
+
+        // 1. Student with default values
+        System.out.println("1. Student created with Default Constructor:");
+        Student s1 = new Student();
+        s1.display();
+
+        // 2. Student with user-provided values
+        System.out.println("2. Student created with Parameterized Constructor:");
+        Student s2 = new Student(101, "Alice Johnson", "Computer Science", 9.2);
+        s2.display();
+
+        // 3. Student created by copying an existing record
+        System.out.println("3. Student created with Copy Constructor (copy of Alice):");
+        Student s3 = new Student(s2);
+        s3.display();
+    }
+}
+
+============================================================
+
+A construction company needs a system to calculate the area of different shapes used in building designs. Develop a Java program to calculate the area of a circle, rectangle, and triangle using the same method name.
+
+class ShapeArea {
+    // 1. Area of Circle: pi * r^2
+    double calculateArea(double radius) {
+        return Math.PI * radius * radius;
+    }
+
+    // 2. Area of Rectangle: length * breadth
+    double calculateArea(double length, double breadth) {
+        return length * breadth;
+    }
+
+    // 3. Area of Triangle: 1/2 * base * height
+    double calculateArea(float base, float height) {
+        return 0.5 * base * height;
+    }
+
+    // Overloaded variant for triangle with 3 sides using Heron's formula
+    double calculateArea(double a, double b, double c) {
+        double s = (a + b + c) / 2.0;
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    }
+}
+
+class MethodOverloadingDemo {
+    public static void main(String[] args) {
+        ShapeArea calculator = new ShapeArea();
+
+        System.out.println("--- Construction Design Shape Area Calculator ---\n");
+
+        // Circle
+        double radius = 7.0;
+        double circleArea = calculator.calculateArea(radius);
+        System.out.printf("Area of Circle (radius = %.2f)            : %.2f%n", radius, circleArea);
+
+        // Rectangle
+        double length = 12.0;
+        double breadth = 8.0;
+        double rectArea = calculator.calculateArea(length, breadth);
+        System.out.printf("Area of Rectangle (length = %.2f, breadth = %.2f): %.2f%n", length, breadth, rectArea);
+
+        // Triangle with base and height
+        float base = 10.0f;
+        float height = 6.0f;
+        double triArea = calculator.calculateArea(base, height);
+        System.out.printf("Area of Triangle (base = %.2f, height = %.2f)  : %.2f%n", base, height, triArea);
+
+        // Triangle with three sides
+        double a = 3.0, b = 4.0, c = 5.0;
+        double triHeronArea = calculator.calculateArea(a, b, c);
+        System.out.printf("Area of Triangle (sides = %.1f, %.1f, %.1f)       : %.2f%n", a, b, c, triHeronArea);
+    }
+}
+
+============================================================
+
+A mobile store maintains records of products. Some products are registered with only a name, while others include name and price. Implement a program using constructor overloading to handle both cases.
+
+class Product {
+    private String name;
+    private double price;
+    private boolean priceAvailable;
+
+    // Constructor 1: Registered with only name
+    public Product(String name) {
+        this.name = name;
+        this.price = 0.0;
+        this.priceAvailable = false;
+    }
+
+    // Constructor 2: Registered with name and price
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+        this.priceAvailable = true;
+    }
+
+    // Display product record
+    public void displayProduct() {
+        System.out.println("Product Name : " + name);
+        if (priceAvailable) {
+            System.out.printf("Price        : Rs. %.2f%n", price);
+        } else {
+            System.out.println("Price        : Price Not Specified / Upcoming");
+        }
+        System.out.println("----------------------------------------");
+    }
+}
+
+class ConstructorOverloadingDemo {
+    public static void main(String[] args) {
+        System.out.println("--- Mobile Store Product Inventory ---\n");
+
+        // Product registered with only name
+        System.out.println("Product 1 (Registered with name only):");
+        Product p1 = new Product("Samsung Galaxy S24 Ultra");
+        p1.displayProduct();
+
+        // Product registered with name and price
+        System.out.println("Product 2 (Registered with name and price):");
+        Product p2 = new Product("Apple iPhone 16 Pro", 119900.00);
+        p2.displayProduct();
+
+        // Product registered with name only (upcoming model)
+        System.out.println("Product 3 (Registered with name only):");
+        Product p3 = new Product("Google Pixel 10 Pro");
+        p3.displayProduct();
+    }
+}
+
+============================================================
+
+A university stores general information about a person and additional information about students. Develop a program using inheritance to reuse person details for student records.
+
+// Base class: Person
+class UniversityPerson {
+    protected String name;
+    protected int age;
+    protected String gender;
+    protected String address;
+
+    public UniversityPerson(String name, int age, String gender, String address) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.address = address;
+    }
+
+    public void displayPersonDetails() {
+        System.out.println("Name    : " + name);
+        System.out.println("Age     : " + age);
+        System.out.println("Gender  : " + gender);
+        System.out.println("Address : " + address);
+    }
+}
+
+// Derived class: Student inherits UniversityPerson
+class UniversityStudent extends UniversityPerson {
+    private String rollNo;
+    private String department;
+    private double cgpa;
+
+    public UniversityStudent(String name, int age, String gender, String address, String rollNo, String department, double cgpa) {
+        super(name, age, gender, address); // Reusing Person constructor
+        this.rollNo = rollNo;
+        this.department = department;
+        this.cgpa = cgpa;
+    }
+
+    public void displayStudentDetails() {
+        displayPersonDetails(); // Reusing Person display logic
+        System.out.println("Roll No : " + rollNo);
+        System.out.println("Dept    : " + department);
+        System.out.println("CGPA    : " + cgpa);
+        System.out.println("----------------------------------------");
+    }
+}
+
+class SingleInheritanceDemo {
+    public static void main(String[] args) {
+        System.out.println("--- University Student Records (Single Inheritance) ---\n");
+
+        UniversityStudent s1 = new UniversityStudent("Rohit Sharma", 20, "Male", "Mumbai, Maharashtra", "CS-2024-042", "Computer Engineering", 9.15);
+        UniversityStudent s2 = new UniversityStudent("Pooja Patel", 19, "Female", "Pune, Maharashtra", "IT-2024-088", "Information Technology", 9.42);
+
+        System.out.println("Student 1 Details:");
+        s1.displayStudentDetails();
+
+        System.out.println("Student 2 Details:");
+        s2.displayStudentDetails();
+    }
+}
+
+============================================================
+
+An educational institution manages person, student, and postgraduate student details. Design a program using multilevel inheritance to represent this hierarchy.
+
+// Level 1: Base Class
+class AcademicPerson {
+    protected String name;
+    protected int age;
+    protected String email;
+
+    public AcademicPerson(String name, int age, String email) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+    }
+
+    public void displayPersonInfo() {
+        System.out.println("Name           : " + name);
+        System.out.println("Age            : " + age);
+        System.out.println("Email          : " + email);
+    }
+}
+
+// Level 2: Derived Class (inherits from AcademicPerson)
+class CollegeStudent extends AcademicPerson {
+    protected String studentId;
+    protected String department;
+
+    public CollegeStudent(String name, int age, String email, String studentId, String department) {
+        super(name, age, email);
+        this.studentId = studentId;
+        this.department = department;
+    }
+
+    public void displayStudentInfo() {
+        displayPersonInfo();
+        System.out.println("Student ID     : " + studentId);
+        System.out.println("Department     : " + department);
+    }
+}
+
+// Level 3: Derived Class (inherits from CollegeStudent)
+class PostgraduateStudent extends CollegeStudent {
+    private String specialization;
+    private String researchTopic;
+    private String guideName;
+
+    public PostgraduateStudent(String name, int age, String email, String studentId, 
+                               String department, String specialization, 
+                               String researchTopic, String guideName) {
+        super(name, age, email, studentId, department);
+        this.specialization = specialization;
+        this.researchTopic = researchTopic;
+        this.guideName = guideName;
+    }
+
+    public void displayPostgraduateInfo() {
+        displayStudentInfo();
+        System.out.println("Specialization : " + specialization);
+        System.out.println("Research Topic : " + researchTopic);
+        System.out.println("Guide Name     : " + guideName);
+        System.out.println("----------------------------------------");
+    }
+}
+
+class MultilevelInheritanceDemo {
+    public static void main(String[] args) {
+        System.out.println("--- Postgraduate Student Hierarchy (Multilevel Inheritance) ---\n");
+
+        PostgraduateStudent pg = new PostgraduateStudent(
+            "Ananya Iyer",
+            24,
+            "ananya.iyer@institution.edu",
+            "PG-AI-2025-07",
+            "Computer Science & Engineering",
+            "Artificial Intelligence & Robotics",
+            "Autonomous Multi-Agent Coordination in Edge Systems",
+            "Dr. K. R. Raman"
+        );
+
+        pg.displayPostgraduateInfo();
+    }
+}
+
+============================================================
+
+A company stores employee information for Managers and Developers. Since both share common employee details, implement hierarchical inheritance to represent the relationship.
+
+// Superclass
+class Employee {
+    protected int empId;
+    protected String name;
+    protected double basicSalary;
+
+    public Employee(int empId, String name, double basicSalary) {
+        this.empId = empId;
+        this.name = name;
+        this.basicSalary = basicSalary;
+    }
+
+    public void displayBasicInfo() {
+        System.out.println("Employee ID   : " + empId);
+        System.out.println("Employee Name : " + name);
+        System.out.printf("Basic Salary  : Rs. %.2f%n", basicSalary);
+    }
+}
+
+// Subclass 1: Manager
+class Manager extends Employee {
+    private String department;
+    private int teamSize;
+    private double performanceBonus;
+
+    public Manager(int empId, String name, double basicSalary, String department, int teamSize, double performanceBonus) {
+        super(empId, name, basicSalary);
+        this.department = department;
+        this.teamSize = teamSize;
+        this.performanceBonus = performanceBonus;
+    }
+
+    public double calculateTotalSalary() {
+        return basicSalary + performanceBonus;
+    }
+
+    public void displayManagerDetails() {
+        displayBasicInfo();
+        System.out.println("Role          : Engineering Manager");
+        System.out.println("Department    : " + department);
+        System.out.println("Team Size     : " + teamSize + " members");
+        System.out.printf("Bonus         : Rs. %.2f%n", performanceBonus);
+        System.out.printf("Total Salary  : Rs. %.2f%n", calculateTotalSalary());
+        System.out.println("----------------------------------------");
+    }
+}
+
+// Subclass 2: Developer
+class Developer extends Employee {
+    private String primaryTechStack;
+    private String projectName;
+    private double incentive;
+
+    public Developer(int empId, String name, double basicSalary, String primaryTechStack, String projectName, double incentive) {
+        super(empId, name, basicSalary);
+        this.primaryTechStack = primaryTechStack;
+        this.projectName = projectName;
+        this.incentive = incentive;
+    }
+
+    public double calculateTotalSalary() {
+        return basicSalary + incentive;
+    }
+
+    public void displayDeveloperDetails() {
+        displayBasicInfo();
+        System.out.println("Role          : Software Developer");
+        System.out.println("Tech Stack    : " + primaryTechStack);
+        System.out.println("Project       : " + projectName);
+        System.out.printf("Incentive     : Rs. %.2f%n", incentive);
+        System.out.printf("Total Salary  : Rs. %.2f%n", calculateTotalSalary());
+        System.out.println("----------------------------------------");
+    }
+}
+
+class HierarchicalInheritanceDemo {
+    public static void main(String[] args) {
+        System.out.println("--- Corporate Employee Management (Hierarchical Inheritance) ---\n");
+
+        Manager mgr = new Manager(1001, "Siddharth Verma", 120000.0, "Platform Engineering", 12, 35000.0);
+        Developer dev = new Developer(2004, "Neha Kulkarni", 85000.0, "Java & Spring Boot", "Cloud Migration", 15000.0);
+
+        System.out.println("Manager Record:");
+        mgr.displayManagerDetails();
+
+        System.out.println("Developer Record:");
+        dev.displayDeveloperDetails();
+    }
+}
+
+============================================================
+
+Different banks calculate interest using different rates. Design a program where each bank overrides a common method to display its applicable interest rate.
+
+// Base class
+class Bank {
+    protected String bankName;
+
+    public Bank(String bankName) {
+        this.bankName = bankName;
+    }
+
+    // Method to be overridden by subclasses
+    public double getInterestRate() {
+        return 0.0;
+    }
+
+    public void displayInterestRate() {
+        System.out.println("Bank: " + bankName + " | Applicable Interest Rate: " + getInterestRate() + "%");
+    }
+
+    public double calculateSimpleInterest(double principal, int years) {
+        return (principal * getInterestRate() * years) / 100.0;
+    }
+}
+
+// Subclass 1: SBI
+class SBI extends Bank {
+    public SBI() {
+        super("State Bank of India (SBI)");
+    }
+
+    @Override
+    public double getInterestRate() {
+        return 6.50; // 6.50%
+    }
+}
+
+// Subclass 2: ICICI
+class ICICI extends Bank {
+    public ICICI() {
+        super("ICICI Bank");
+    }
+
+    @Override
+    public double getInterestRate() {
+        return 7.00; // 7.00%
+    }
+}
+
+// Subclass 3: HDFC
+class HDFC extends Bank {
+    public HDFC() {
+        super("HDFC Bank");
+    }
+
+    @Override
+    public double getInterestRate() {
+        return 7.25; // 7.25%
+    }
+}
+
+// Subclass 4: Axis
+class Axis extends Bank {
+    public Axis() {
+        super("Axis Bank");
+    }
+
+    @Override
+    public double getInterestRate() {
+        return 7.10; // 7.10%
+    }
+}
+
+class MethodOverridingDemo {
+    public static void main(String[] args) {
+        System.out.println("--- Banking Interest Rates (Method Overriding & Runtime Polymorphism) ---\n");
+
+        // Polymorphic array of Bank references demonstrating dynamic method dispatch
+        Bank[] banks = {
+            new SBI(),
+            new ICICI(),
+            new HDFC(),
+            new Axis()
+        };
+
+        double principal = 100000.0; // Rs. 1 Lakh
+        int years = 3;
+
+        System.out.printf("Sample Loan/Deposit Calculation for Principal: Rs. %.2f over %d years:%n%n", principal, years);
+
+        for (Bank bank : banks) {
+            bank.displayInterestRate();
+            double interest = bank.calculateSimpleInterest(principal, years);
+            System.out.printf("  -> Interest accrued for %d years: Rs. %.2f%n", years, interest);
+            System.out.println("------------------------------------------------------------");
+        }
+    }
+}
+
+============================================================
+
+A smart device can perform both printing and scanning operations. Implement interfaces to represent these functionalities and demonstrate multiple inheritance through interfaces.
+
+// Interface 1: Printing functionality
+interface Printable {
+    void printDocument(String documentName);
+    void checkInkLevel();
+}
+
+// Interface 2: Scanning functionality
+interface Scannable {
+    void scanDocument(String documentName);
+    void saveScanToCloud(String fileName);
+}
+
+// SmartDevice class implementing multiple interfaces
+class SmartDevice implements Printable, Scannable {
+    private String deviceId;
+    private String modelName;
+    private int inkLevelPercent;
+
+    public SmartDevice(String deviceId, String modelName, int inkLevelPercent) {
+        this.deviceId = deviceId;
+        this.modelName = modelName;
+        this.inkLevelPercent = inkLevelPercent;
+    }
+
+    // Implementation of Printable methods
+    @Override
+    public void printDocument(String documentName) {
+        if (inkLevelPercent < 5) {
+            System.out.println("[" + modelName + "] Printing failed: Ink critically low (" + inkLevelPercent + "%).");
+            return;
+        }
+        inkLevelPercent -= 2;
+        System.out.println("[" + modelName + "] Printing document: '" + documentName + "' -> Complete. (Remaining ink: " + inkLevelPercent + "%)");
+    }
+
+    @Override
+    public void checkInkLevel() {
+        System.out.println("[" + modelName + "] Current Ink Level: " + inkLevelPercent + "%");
+    }
+
+    // Implementation of Scannable methods
+    @Override
+    public void scanDocument(String documentName) {
+        System.out.println("[" + modelName + "] Scanning physical document: '" + documentName + "' at 600 DPI -> Scan successful.");
+    }
+
+    @Override
+    public void saveScanToCloud(String fileName) {
+        System.out.println("[" + modelName + "] Uploading scanned file '" + fileName + ".pdf' to secure cloud storage -> Done.");
+    }
+
+    public void displayDeviceInfo() {
+        System.out.println("Device ID   : " + deviceId);
+        System.out.println("Model Name  : " + modelName);
+        System.out.println("Capabilities: Printing, Scanning, Cloud Sync");
+        System.out.println("------------------------------------------------------------");
+    }
+}
+
+class InterfaceDemo {
+    public static void main(String[] args) {
+        System.out.println("--- Smart All-In-One Device (Multiple Inheritance via Interfaces) ---\n");
+
+        SmartDevice device = new SmartDevice("HP-ENVY-702", "HP Envy All-in-One Multifunction", 85);
+        device.displayDeviceInfo();
+
+        // 1. Direct object interaction
+        System.out.println(">> Operating device directly as SmartDevice:");
+        device.printDocument("Annual_Financial_Report.pdf");
+        device.scanDocument("Signed_Vendor_Contract.jpg");
+        device.saveScanToCloud("Signed_Vendor_Contract");
+        System.out.println();
+
+        // 2. Demonstration of interface reference (Printable view)
+        System.out.println(">> Accessing device via Printable interface reference:");
+        Printable printerRef = device;
+        printerRef.checkInkLevel();
+        printerRef.printDocument("Lecture_Notes_Unit1.docx");
+        System.out.println();
+
+        // 3. Demonstration of interface reference (Scannable view)
+        System.out.println(">> Accessing device via Scannable interface reference:");
+        Scannable scannerRef = device;
+        scannerRef.scanDocument("National_Identity_Card.png");
+        scannerRef.saveScanToCloud("Identity_Proof_Verification");
+        System.out.println("------------------------------------------------------------");
+    }
+}
+
+============================================================
+
+A bank account should not allow withdrawal amounts greater than the available balance. Develop a program that handles such invalid transactions using exception handling.
+
+// Custom Exception for Insufficient Balance
+class InsufficientFundsException extends Exception {
+    private double requestedAmount;
+    private double currentBalance;
+
+    public InsufficientFundsException(String message, double requestedAmount, double currentBalance) {
+        super(message);
+        this.requestedAmount = requestedAmount;
+        this.currentBalance = currentBalance;
+    }
+
+    public double getDeficit() {
+        return requestedAmount - currentBalance;
+    }
+
+    public double getRequestedAmount() {
+        return requestedAmount;
+    }
+
+    public double getCurrentBalance() {
+        return currentBalance;
+    }
+}
+
+// Bank Account Class
+class BankAccount {
+    private String accountNumber;
+    private String accountHolder;
+    private double balance;
+
+    public BankAccount(String accountNumber, String accountHolder, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.accountHolder = accountHolder;
+        this.balance = Math.max(0.0, initialBalance);
+    }
+
+    // Deposit Method
+    public void deposit(double amount) {
+        if (amount <= 0) {
+            System.out.println("Invalid deposit amount! Amount must be positive.");
+            return;
+        }
+        balance += amount;
+        System.out.printf("Deposited: Rs. %.2f | Updated Balance: Rs. %.2f%n", amount, balance);
+    }
+
+    // Withdrawal Method declaring InsufficientFundsException
+    public void withdraw(double amount) throws InsufficientFundsException {
+        System.out.printf("Attempting to withdraw: Rs. %.2f...%n", amount);
+
+        if (amount <= 0) {
+            System.out.println("Invalid transaction: Withdrawal amount must be greater than 0.");
+            return;
+        }
+
+        if (amount > balance) {
+            throw new InsufficientFundsException(
+                "Transaction Declined: Insufficient balance in account.",
+                amount,
+                balance
+            );
+        }
+
+        balance -= amount;
+        System.out.printf("Withdrawal Successful: Rs. %.2f deducted. Remaining Balance: Rs. %.2f%n", amount, balance);
+    }
+
+    public void displaySummary() {
+        System.out.println("----------------------------------------");
+        System.out.println("Account Number : " + accountNumber);
+        System.out.println("Account Holder : " + accountHolder);
+        System.out.printf("Current Balance: Rs. %.2f%n", balance);
+        System.out.println("----------------------------------------");
+    }
+}
+
+class ExceptionHandlingDemo {
+    public static void main(String[] args) {
+        System.out.println("--- Bank Account Transaction System (Exception Handling) ---\n");
+
+        BankAccount account = new BankAccount("SBIN-00984512", "Pankaj Sharma", 15000.00);
+        account.displaySummary();
+
+        // Transaction 1: Successful deposit
+        System.out.println("1. Performing Deposit:");
+        account.deposit(5000.00);
+        System.out.println();
+
+        // Transaction 2: Valid withdrawal within available balance
+        System.out.println("2. Performing Valid Withdrawal:");
+        try {
+            account.withdraw(8000.00);
+        } catch (InsufficientFundsException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+        System.out.println();
+
+        // Transaction 3: Invalid withdrawal exceeding balance
+        System.out.println("3. Attempting Invalid Withdrawal Exceeding Balance:");
+        try {
+            account.withdraw(20000.00);
+        } catch (InsufficientFundsException e) {
+            System.out.println("[CAUGHT EXCEPTION] " + e.getMessage());
+            System.out.printf("  Requested Amount : Rs. %.2f%n", e.getRequestedAmount());
+            System.out.printf("  Available Balance: Rs. %.2f%n", e.getCurrentBalance());
+            System.out.printf("  Shortage/Deficit : Rs. %.2f%n", e.getDeficit());
+        } finally {
+            System.out.println("Transaction check completed.");
+        }
+        System.out.println();
+
+        // Display final account status
+        System.out.println("Final Account State:");
+        account.displaySummary();
+    }
+}
