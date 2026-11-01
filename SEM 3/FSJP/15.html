@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Hooks - Color Selector</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3f4f6;
+        }
+        .app-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 440px;
+            width: 100%;
+        }
+        h2 {
+            color: #1f2937;
+            margin-bottom: 25px;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        button {
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+        button:active {
+            transform: scale(0.96);
+        }
+        .btn-red { background-color: #ef4444; }
+        .btn-blue { background-color: #3b82f6; }
+        .btn-green { background-color: #10b981; }
+        .btn-yellow { background-color: #eab308; color: #1f2937; }
+        .message-box {
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 14px;
+            border-radius: 8px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            min-height: 28px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function ColorSelector() {
+            const [selectedColor, setSelectedColor] = useState('');
+
+            return (
+                <div className="app-card">
+                    <h2>React Hooks Color Picker</h2>
+                    <div className="btn-group">
+                        <button className="btn-red" onClick={() => setSelectedColor('Red')}>Red</button>
+                        <button className="btn-blue" onClick={() => setSelectedColor('Blue')}>Blue</button>
+                        <button className="btn-green" onClick={() => setSelectedColor('Green')}>Green</button>
+                        <button className="btn-yellow" onClick={() => setSelectedColor('Yellow')}>Yellow</button>
+                    </div>
+                    <div className="message-box">
+                        {selectedColor ? (
+                            <span>You have selected <strong>{selectedColor}</strong> color.</span>
+                        ) : (
+                            <span>Please click a color button above.</span>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ColorSelector />);
+    </script>
+</body>
+</html>

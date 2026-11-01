@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Background Color Changer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 1s ease;
+            background-color: #f0f4f8;
+        }
+        .box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 12px;
+        }
+        #currentColor {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin: 15px 0;
+        }
+        #timerNotice {
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Dynamic Color Changer</h2>
+        <p id="timerNotice">Changes automatically every 5 seconds</p>
+        <div id="currentColor">Current Color: Light Blue (#dbeafe)</div>
+    </div>
+
+    <script>
+        const colors = [
+            { name: "Light Blue", hex: "#dbeafe" },
+            { name: "Mint Green", hex: "#d1fae5" },
+            { name: "Pale Peach", hex: "#ffedd5" },
+            { name: "Lavender", hex: "#ede9fe" },
+            { name: "Light Rose", hex: "#ffe4e6" },
+            { name: "Sunny Yellow", hex: "#fef9c3" }
+        ];
+
+        let currentIndex = 0;
+
+        function changeBackgroundColor() {
+            currentIndex = (currentIndex + 1) % colors.length;
+            const chosen = colors[currentIndex];
+            document.body.style.backgroundColor = chosen.hex;
+            document.getElementById('currentColor').textContent = "Current Color: " + chosen.name + " (" + chosen.hex + ")";
+        }
+
+        setInterval(changeBackgroundColor, 5000);
+    </script>
+</body>
+</html>
