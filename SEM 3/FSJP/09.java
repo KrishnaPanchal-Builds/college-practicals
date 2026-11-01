@@ -1,6 +1,3 @@
-// To handle invalid bank withdrawal transactions exceeding available balance using custom Exception Handling.
-
-// Custom Exception for Insufficient Balance
 class InsufficientFundsException extends Exception {
     private double requestedAmount;
     private double currentBalance;
@@ -24,7 +21,6 @@ class InsufficientFundsException extends Exception {
     }
 }
 
-// Bank Account Class
 class BankAccount {
     private String accountNumber;
     private String accountHolder;
@@ -36,7 +32,6 @@ class BankAccount {
         this.balance = Math.max(0.0, initialBalance);
     }
 
-    // Deposit Method
     public void deposit(double amount) {
         if (amount <= 0) {
             System.out.println("Invalid deposit amount! Amount must be positive.");
@@ -46,7 +41,6 @@ class BankAccount {
         System.out.printf("Deposited: Rs. %.2f | Updated Balance: Rs. %.2f%n", amount, balance);
     }
 
-    // Withdrawal Method declaring InsufficientFundsException
     public void withdraw(double amount) throws InsufficientFundsException {
         System.out.printf("Attempting to withdraw: Rs. %.2f...%n", amount);
 
@@ -83,12 +77,10 @@ class ExceptionHandlingDemo {
         BankAccount account = new BankAccount("SBIN-00984512", "Pankaj Sharma", 15000.00);
         account.displaySummary();
 
-        // Transaction 1: Successful deposit
         System.out.println("1. Performing Deposit:");
         account.deposit(5000.00);
         System.out.println();
 
-        // Transaction 2: Valid withdrawal within available balance
         System.out.println("2. Performing Valid Withdrawal:");
         try {
             account.withdraw(8000.00);
@@ -97,7 +89,6 @@ class ExceptionHandlingDemo {
         }
         System.out.println();
 
-        // Transaction 3: Invalid withdrawal exceeding balance
         System.out.println("3. Attempting Invalid Withdrawal Exceeding Balance:");
         try {
             account.withdraw(20000.00);
@@ -111,7 +102,6 @@ class ExceptionHandlingDemo {
         }
         System.out.println();
 
-        // Display final account status
         System.out.println("Final Account State:");
         account.displaySummary();
     }

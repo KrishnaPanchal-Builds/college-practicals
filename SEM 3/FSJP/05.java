@@ -1,6 +1,3 @@
-// To represent an educational institution hierarchy using Multilevel Inheritance (AcademicPerson -> CollegeStudent -> PostgraduateStudent).
-
-// Level 1: Base Class
 class AcademicPerson {
     protected String name;
     protected int age;
@@ -19,7 +16,6 @@ class AcademicPerson {
     }
 }
 
-// Level 2: Derived Class (inherits from AcademicPerson)
 class CollegeStudent extends AcademicPerson {
     protected String studentId;
     protected String department;
@@ -37,7 +33,6 @@ class CollegeStudent extends AcademicPerson {
     }
 }
 
-// Level 3: Derived Class (inherits from CollegeStudent)
 class PostgraduateStudent extends CollegeStudent {
     private String specialization;
     private String researchTopic;

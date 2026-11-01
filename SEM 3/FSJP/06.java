@@ -1,6 +1,3 @@
-// To implement Hierarchical Inheritance representing Company Employee records (Employee -> Manager, Employee -> Developer).
-
-// Superclass
 class Employee {
     protected int empId;
     protected String name;
@@ -19,7 +16,6 @@ class Employee {
     }
 }
 
-// Subclass 1: Manager
 class Manager extends Employee {
     private String department;
     private int teamSize;
@@ -47,7 +43,6 @@ class Manager extends Employee {
     }
 }
 
-// Subclass 2: Developer
 class Developer extends Employee {
     private String primaryTechStack;
     private String projectName;

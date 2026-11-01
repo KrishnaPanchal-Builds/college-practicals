@@ -6,7 +6,6 @@ class Student {
     private String course;
     private double gpa;
 
-    // Default Constructor
     public Student() {
         this.id = 0;
         this.name = "Unknown";
@@ -14,7 +13,6 @@ class Student {
         this.gpa = 0.0;
     }
 
-    // Parameterized Constructor
     public Student(int id, String name, String course, double gpa) {
         this.id = id;
         this.name = name;
@@ -22,7 +20,6 @@ class Student {
         this.gpa = gpa;
     }
 
-    // Copy Constructor
     public Student(Student other) {
         this.id = other.id;
         this.name = other.name;
@@ -30,7 +27,6 @@ class Student {
         this.gpa = other.gpa;
     }
 
-    // Display student information
     public void display() {
         System.out.println("Student ID: " + id);
         System.out.println("Name      : " + name);
@@ -44,17 +40,14 @@ class StudentConstructorDemo {
     public static void main(String[] args) {
         System.out.println("--- Student Information Management ---\n");
 
-        // 1. Student with default values
         System.out.println("1. Student created with Default Constructor:");
         Student s1 = new Student();
         s1.display();
 
-        // 2. Student with user-provided values
         System.out.println("2. Student created with Parameterized Constructor:");
         Student s2 = new Student(101, "Alice Johnson", "Computer Science", 9.2);
         s2.display();
 
-        // 3. Student created by copying an existing record
         System.out.println("3. Student created with Copy Constructor (copy of Alice):");
         Student s3 = new Student(s2);
         s3.display();
@@ -66,22 +59,18 @@ class StudentConstructorDemo {
 A construction company needs a system to calculate the area of different shapes used in building designs. Develop a Java program to calculate the area of a circle, rectangle, and triangle using the same method name.
 
 class ShapeArea {
-    // 1. Area of Circle: pi * r^2
     double calculateArea(double radius) {
         return Math.PI * radius * radius;
     }
 
-    // 2. Area of Rectangle: length * breadth
     double calculateArea(double length, double breadth) {
         return length * breadth;
     }
 
-    // 3. Area of Triangle: 1/2 * base * height
     double calculateArea(float base, float height) {
         return 0.5 * base * height;
     }
 
-    // Overloaded variant for triangle with 3 sides using Heron's formula
     double calculateArea(double a, double b, double c) {
         double s = (a + b + c) / 2.0;
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
@@ -94,24 +83,20 @@ class MethodOverloadingDemo {
 
         System.out.println("--- Construction Design Shape Area Calculator ---\n");
 
-        // Circle
         double radius = 7.0;
         double circleArea = calculator.calculateArea(radius);
         System.out.printf("Area of Circle (radius = %.2f)            : %.2f%n", radius, circleArea);
 
-        // Rectangle
         double length = 12.0;
         double breadth = 8.0;
         double rectArea = calculator.calculateArea(length, breadth);
         System.out.printf("Area of Rectangle (length = %.2f, breadth = %.2f): %.2f%n", length, breadth, rectArea);
 
-        // Triangle with base and height
         float base = 10.0f;
         float height = 6.0f;
         double triArea = calculator.calculateArea(base, height);
         System.out.printf("Area of Triangle (base = %.2f, height = %.2f)  : %.2f%n", base, height, triArea);
 
-        // Triangle with three sides
         double a = 3.0, b = 4.0, c = 5.0;
         double triHeronArea = calculator.calculateArea(a, b, c);
         System.out.printf("Area of Triangle (sides = %.1f, %.1f, %.1f)       : %.2f%n", a, b, c, triHeronArea);
@@ -127,21 +112,18 @@ class Product {
     private double price;
     private boolean priceAvailable;
 
-    // Constructor 1: Registered with only name
     public Product(String name) {
         this.name = name;
         this.price = 0.0;
         this.priceAvailable = false;
     }
 
-    // Constructor 2: Registered with name and price
     public Product(String name, double price) {
         this.name = name;
         this.price = price;
         this.priceAvailable = true;
     }
 
-    // Display product record
     public void displayProduct() {
         System.out.println("Product Name : " + name);
         if (priceAvailable) {
@@ -157,17 +139,14 @@ class ConstructorOverloadingDemo {
     public static void main(String[] args) {
         System.out.println("--- Mobile Store Product Inventory ---\n");
 
-        // Product registered with only name
         System.out.println("Product 1 (Registered with name only):");
         Product p1 = new Product("Samsung Galaxy S24 Ultra");
         p1.displayProduct();
 
-        // Product registered with name and price
         System.out.println("Product 2 (Registered with name and price):");
         Product p2 = new Product("Apple iPhone 16 Pro", 119900.00);
         p2.displayProduct();
 
-        // Product registered with name only (upcoming model)
         System.out.println("Product 3 (Registered with name only):");
         Product p3 = new Product("Google Pixel 10 Pro");
         p3.displayProduct();
@@ -178,7 +157,6 @@ class ConstructorOverloadingDemo {
 
 A university stores general information about a person and additional information about students. Develop a program using inheritance to reuse person details for student records.
 
-// Base class: Person
 class UniversityPerson {
     protected String name;
     protected int age;
@@ -200,21 +178,20 @@ class UniversityPerson {
     }
 }
 
-// Derived class: Student inherits UniversityPerson
 class UniversityStudent extends UniversityPerson {
     private String rollNo;
     private String department;
     private double cgpa;
 
     public UniversityStudent(String name, int age, String gender, String address, String rollNo, String department, double cgpa) {
-        super(name, age, gender, address); // Reusing Person constructor
+        super(name, age, gender, address);
         this.rollNo = rollNo;
         this.department = department;
         this.cgpa = cgpa;
     }
 
     public void displayStudentDetails() {
-        displayPersonDetails(); // Reusing Person display logic
+        displayPersonDetails();
         System.out.println("Roll No : " + rollNo);
         System.out.println("Dept    : " + department);
         System.out.println("CGPA    : " + cgpa);
@@ -241,7 +218,6 @@ class SingleInheritanceDemo {
 
 An educational institution manages person, student, and postgraduate student details. Design a program using multilevel inheritance to represent this hierarchy.
 
-// Level 1: Base Class
 class AcademicPerson {
     protected String name;
     protected int age;
@@ -260,7 +236,6 @@ class AcademicPerson {
     }
 }
 
-// Level 2: Derived Class (inherits from AcademicPerson)
 class CollegeStudent extends AcademicPerson {
     protected String studentId;
     protected String department;
@@ -278,7 +253,6 @@ class CollegeStudent extends AcademicPerson {
     }
 }
 
-// Level 3: Derived Class (inherits from CollegeStudent)
 class PostgraduateStudent extends CollegeStudent {
     private String specialization;
     private String researchTopic;
@@ -325,7 +299,6 @@ class MultilevelInheritanceDemo {
 
 A company stores employee information for Managers and Developers. Since both share common employee details, implement hierarchical inheritance to represent the relationship.
 
-// Superclass
 class Employee {
     protected int empId;
     protected String name;
@@ -344,7 +317,6 @@ class Employee {
     }
 }
 
-// Subclass 1: Manager
 class Manager extends Employee {
     private String department;
     private int teamSize;
@@ -372,7 +344,6 @@ class Manager extends Employee {
     }
 }
 
-// Subclass 2: Developer
 class Developer extends Employee {
     private String primaryTechStack;
     private String projectName;
@@ -419,7 +390,6 @@ class HierarchicalInheritanceDemo {
 
 Different banks calculate interest using different rates. Design a program where each bank overrides a common method to display its applicable interest rate.
 
-// Base class
 class Bank {
     protected String bankName;
 
@@ -427,7 +397,6 @@ class Bank {
         this.bankName = bankName;
     }
 
-    // Method to be overridden by subclasses
     public double getInterestRate() {
         return 0.0;
     }
@@ -441,7 +410,6 @@ class Bank {
     }
 }
 
-// Subclass 1: SBI
 class SBI extends Bank {
     public SBI() {
         super("State Bank of India (SBI)");
@@ -449,11 +417,10 @@ class SBI extends Bank {
 
     @Override
     public double getInterestRate() {
-        return 6.50; // 6.50%
+        return 6.50;
     }
 }
 
-// Subclass 2: ICICI
 class ICICI extends Bank {
     public ICICI() {
         super("ICICI Bank");
@@ -461,11 +428,10 @@ class ICICI extends Bank {
 
     @Override
     public double getInterestRate() {
-        return 7.00; // 7.00%
+        return 7.00;
     }
 }
 
-// Subclass 3: HDFC
 class HDFC extends Bank {
     public HDFC() {
         super("HDFC Bank");
@@ -473,11 +439,10 @@ class HDFC extends Bank {
 
     @Override
     public double getInterestRate() {
-        return 7.25; // 7.25%
+        return 7.25;
     }
 }
 
-// Subclass 4: Axis
 class Axis extends Bank {
     public Axis() {
         super("Axis Bank");
@@ -485,7 +450,7 @@ class Axis extends Bank {
 
     @Override
     public double getInterestRate() {
-        return 7.10; // 7.10%
+        return 7.10;
     }
 }
 
@@ -493,7 +458,6 @@ class MethodOverridingDemo {
     public static void main(String[] args) {
         System.out.println("--- Banking Interest Rates (Method Overriding & Runtime Polymorphism) ---\n");
 
-        // Polymorphic array of Bank references demonstrating dynamic method dispatch
         Bank[] banks = {
             new SBI(),
             new ICICI(),
@@ -501,7 +465,7 @@ class MethodOverridingDemo {
             new Axis()
         };
 
-        double principal = 100000.0; // Rs. 1 Lakh
+        double principal = 100000.0;
         int years = 3;
 
         System.out.printf("Sample Loan/Deposit Calculation for Principal: Rs. %.2f over %d years:%n%n", principal, years);
@@ -519,19 +483,16 @@ class MethodOverridingDemo {
 
 A smart device can perform both printing and scanning operations. Implement interfaces to represent these functionalities and demonstrate multiple inheritance through interfaces.
 
-// Interface 1: Printing functionality
 interface Printable {
     void printDocument(String documentName);
     void checkInkLevel();
 }
 
-// Interface 2: Scanning functionality
 interface Scannable {
     void scanDocument(String documentName);
     void saveScanToCloud(String fileName);
 }
 
-// SmartDevice class implementing multiple interfaces
 class SmartDevice implements Printable, Scannable {
     private String deviceId;
     private String modelName;
@@ -543,7 +504,6 @@ class SmartDevice implements Printable, Scannable {
         this.inkLevelPercent = inkLevelPercent;
     }
 
-    // Implementation of Printable methods
     @Override
     public void printDocument(String documentName) {
         if (inkLevelPercent < 5) {
@@ -559,7 +519,6 @@ class SmartDevice implements Printable, Scannable {
         System.out.println("[" + modelName + "] Current Ink Level: " + inkLevelPercent + "%");
     }
 
-    // Implementation of Scannable methods
     @Override
     public void scanDocument(String documentName) {
         System.out.println("[" + modelName + "] Scanning physical document: '" + documentName + "' at 600 DPI -> Scan successful.");
@@ -585,21 +544,18 @@ class InterfaceDemo {
         SmartDevice device = new SmartDevice("HP-ENVY-702", "HP Envy All-in-One Multifunction", 85);
         device.displayDeviceInfo();
 
-        // 1. Direct object interaction
         System.out.println(">> Operating device directly as SmartDevice:");
         device.printDocument("Annual_Financial_Report.pdf");
         device.scanDocument("Signed_Vendor_Contract.jpg");
         device.saveScanToCloud("Signed_Vendor_Contract");
         System.out.println();
 
-        // 2. Demonstration of interface reference (Printable view)
         System.out.println(">> Accessing device via Printable interface reference:");
         Printable printerRef = device;
         printerRef.checkInkLevel();
         printerRef.printDocument("Lecture_Notes_Unit1.docx");
         System.out.println();
 
-        // 3. Demonstration of interface reference (Scannable view)
         System.out.println(">> Accessing device via Scannable interface reference:");
         Scannable scannerRef = device;
         scannerRef.scanDocument("National_Identity_Card.png");
@@ -612,7 +568,6 @@ class InterfaceDemo {
 
 A bank account should not allow withdrawal amounts greater than the available balance. Develop a program that handles such invalid transactions using exception handling.
 
-// Custom Exception for Insufficient Balance
 class InsufficientFundsException extends Exception {
     private double requestedAmount;
     private double currentBalance;
@@ -636,7 +591,6 @@ class InsufficientFundsException extends Exception {
     }
 }
 
-// Bank Account Class
 class BankAccount {
     private String accountNumber;
     private String accountHolder;
@@ -648,7 +602,6 @@ class BankAccount {
         this.balance = Math.max(0.0, initialBalance);
     }
 
-    // Deposit Method
     public void deposit(double amount) {
         if (amount <= 0) {
             System.out.println("Invalid deposit amount! Amount must be positive.");
@@ -658,7 +611,6 @@ class BankAccount {
         System.out.printf("Deposited: Rs. %.2f | Updated Balance: Rs. %.2f%n", amount, balance);
     }
 
-    // Withdrawal Method declaring InsufficientFundsException
     public void withdraw(double amount) throws InsufficientFundsException {
         System.out.printf("Attempting to withdraw: Rs. %.2f...%n", amount);
 
@@ -695,12 +647,10 @@ class ExceptionHandlingDemo {
         BankAccount account = new BankAccount("SBIN-00984512", "Pankaj Sharma", 15000.00);
         account.displaySummary();
 
-        // Transaction 1: Successful deposit
         System.out.println("1. Performing Deposit:");
         account.deposit(5000.00);
         System.out.println();
 
-        // Transaction 2: Valid withdrawal within available balance
         System.out.println("2. Performing Valid Withdrawal:");
         try {
             account.withdraw(8000.00);
@@ -709,7 +659,6 @@ class ExceptionHandlingDemo {
         }
         System.out.println();
 
-        // Transaction 3: Invalid withdrawal exceeding balance
         System.out.println("3. Attempting Invalid Withdrawal Exceeding Balance:");
         try {
             account.withdraw(20000.00);
@@ -723,7 +672,6 @@ class ExceptionHandlingDemo {
         }
         System.out.println();
 
-        // Display final account status
         System.out.println("Final Account State:");
         account.displaySummary();
     }

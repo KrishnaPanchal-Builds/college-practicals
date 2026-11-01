@@ -1,6 +1,3 @@
-// To implement Single Inheritance reusing Person details for Student records.
-
-// Base class: Person
 class UniversityPerson {
     protected String name;
     protected int age;
@@ -22,21 +19,20 @@ class UniversityPerson {
     }
 }
 
-// Derived class: Student inherits UniversityPerson
 class UniversityStudent extends UniversityPerson {
     private String rollNo;
     private String department;
     private double cgpa;
 
     public UniversityStudent(String name, int age, String gender, String address, String rollNo, String department, double cgpa) {
-        super(name, age, gender, address); // Reusing Person constructor
+        super(name, age, gender, address);
         this.rollNo = rollNo;
         this.department = department;
         this.cgpa = cgpa;
     }
 
     public void displayStudentDetails() {
-        displayPersonDetails(); // Reusing Person display logic
+        displayPersonDetails();
         System.out.println("Roll No : " + rollNo);
         System.out.println("Dept    : " + department);
         System.out.println("CGPA    : " + cgpa);

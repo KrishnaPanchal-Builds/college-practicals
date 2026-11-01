@@ -1,6 +1,3 @@
-// To demonstrate Method Overriding and Dynamic Method Dispatch across different Bank interest rates.
-
-// Base class
 class Bank {
     protected String bankName;
 
@@ -8,7 +5,6 @@ class Bank {
         this.bankName = bankName;
     }
 
-    // Method to be overridden by subclasses
     public double getInterestRate() {
         return 0.0;
     }
@@ -22,7 +18,6 @@ class Bank {
     }
 }
 
-// Subclass 1: SBI
 class SBI extends Bank {
     public SBI() {
         super("State Bank of India (SBI)");
@@ -30,11 +25,10 @@ class SBI extends Bank {
 
     @Override
     public double getInterestRate() {
-        return 6.50; // 6.50%
+        return 6.50;
     }
 }
 
-// Subclass 2: ICICI
 class ICICI extends Bank {
     public ICICI() {
         super("ICICI Bank");
@@ -42,11 +36,10 @@ class ICICI extends Bank {
 
     @Override
     public double getInterestRate() {
-        return 7.00; // 7.00%
+        return 7.00;
     }
 }
 
-// Subclass 3: HDFC
 class HDFC extends Bank {
     public HDFC() {
         super("HDFC Bank");
@@ -54,11 +47,10 @@ class HDFC extends Bank {
 
     @Override
     public double getInterestRate() {
-        return 7.25; // 7.25%
+        return 7.25;
     }
 }
 
-// Subclass 4: Axis
 class Axis extends Bank {
     public Axis() {
         super("Axis Bank");
@@ -66,7 +58,7 @@ class Axis extends Bank {
 
     @Override
     public double getInterestRate() {
-        return 7.10; // 7.10%
+        return 7.10;
     }
 }
 
@@ -74,7 +66,6 @@ class MethodOverridingDemo {
     public static void main(String[] args) {
         System.out.println("--- Banking Interest Rates (Method Overriding & Runtime Polymorphism) ---\n");
 
-        // Polymorphic array of Bank references demonstrating dynamic method dispatch
         Bank[] banks = {
             new SBI(),
             new ICICI(),
@@ -82,7 +73,7 @@ class MethodOverridingDemo {
             new Axis()
         };
 
-        double principal = 100000.0; // Rs. 1 Lakh
+        double principal = 100000.0;
         int years = 3;
 
         System.out.printf("Sample Loan/Deposit Calculation for Principal: Rs. %.2f over %d years:%n%n", principal, years);
